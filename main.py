@@ -107,26 +107,30 @@ def translate_sequence(sequence):
     return codons, amino_acids, incomplete_codon
 
 
-# Step 6: Identify start and stop codons
+    # Step 6: Identify start and stop codons
 
 def identify_start_stop(codons):
 
-    start_codons = []
+    start_codons = ["ATG"]
     stop_codons = ["TAA", "TAG", "TGA"]
 
+    found_starts = []
     found_stops = []
 
     for codon in codons:
 
+        # Convert RNA codons into DNA format for checking
         normalized_codon = codon.replace("U", "T")
 
-        if normalized_codon == "ATG":
-            start_codons.append(codon)
+        if normalized_codon in start_codons:
+            found_starts.append(codon)
 
         if normalized_codon in stop_codons:
             found_stops.append(codon)
 
-    return start_codons, found_stops
+    return found_starts, found_stops
+
+    
 
 # Step 7: Display translation in a structured table
 
@@ -211,3 +215,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
