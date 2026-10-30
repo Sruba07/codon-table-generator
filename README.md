@@ -2,7 +2,7 @@
 
 ## 1. Project Overview
 
-The **Codon Table Generator** is a Python-based bioinformatics project developed to generate the standard 64-codon genetic code table and translate user-provided DNA or RNA sequences into their corresponding amino acid sequences.
+The **Codon Table Generator** is a Python project developed to generate the standard 64-codon genetic code table and translate user-provided DNA or RNA sequences into their corresponding amino acid sequences.
 
 In molecular biology, a codon is a sequence of three nucleotides that specifies an amino acid or a stop signal during protein synthesis. The standard genetic code consists of 64 possible codons, including codons that encode amino acids and three stop codons.
 
