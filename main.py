@@ -42,7 +42,6 @@ codon_table = {
     "GGA": "Glycine", "GGG": "Glycine"
 }
 
-
 # Step 2: Display all 64 codons
 
 def display_codon_table():
@@ -53,14 +52,11 @@ def display_codon_table():
 
     print("Total codons:", len(codon_table))
 
-
 # Step 3: Accept sequence from user
 
 def get_sequence():
     sequence = input("\nEnter your DNA or RNA sequence: ")
     return sequence.upper().replace(" ", "")
-
-
 
 # Step 4: Validate the DNA or RNA sequence
 
@@ -80,7 +76,6 @@ def validate_sequence(sequence):
         return False
 
     return True
-
 
 # Step 5: Translate DNA or RNA sequence
 
@@ -111,7 +106,6 @@ def translate_sequence(sequence):
 
     return codons, amino_acids, incomplete_codon
 
-
     # Step 6: Identify start and stop codons
 
 def identify_start_stop(codons):
@@ -135,7 +129,6 @@ def identify_start_stop(codons):
 
     return found_starts, found_stops
 
-    
 
 # Step 7: Display translation in a structured table
 
@@ -207,6 +200,10 @@ def main():
 
         print("\nSequence Statistics:")
         print("Total nucleotides:", len(sequence))
+
+        gc_count = sequence.count("G") + sequence.count("C")
+        gc_percentage = (gc_count / len(sequence)) * 100
+        print(f"GC Content: {gc_percentage:.2f}%")
         print("Complete codons:", len(codons))
         print("Incomplete nucleotides:", len(incomplete))
 
@@ -239,10 +236,7 @@ def main():
 
     print("\nThank you for using Codon Table Generator!")
 
-
 # Step 10: Run the program
 
 if __name__ == "__main__":
     main()
-
-
