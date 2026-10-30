@@ -57,7 +57,7 @@ def display_codon_table():
 
 def get_sequence():
     sequence = input("\nEnter your DNA or RNA sequence: ")
-    return sequence.upper().replace(" ", "")
+    return "".join(sequence.upper().split())
 
 # Step 4: Validate the DNA or RNA sequence
 
@@ -77,6 +77,7 @@ def validate_sequence(sequence):
         return False
 
     return True
+
 
 # Step 5: Translate DNA or RNA sequence
 
@@ -105,7 +106,12 @@ def translate_sequence(sequence):
         codons.append(original_codon)
         amino_acids.append(amino_acid)
 
+        # Stop translation after the first stop codon
+        if amino_acid == "Stop":
+            break
+
     return codons, amino_acids, incomplete_codon
+   
 
 # Step 6: Identify start and stop codons
 
@@ -161,19 +167,27 @@ def display_translation_table(codons, amino_acids):
 
 def display_amino_acid_summary(amino_acids):
 
-    print("\n" + "=" * 40)
-    print("       AMINO ACID SUMMARY")
-    print("=" * 40)
+    print("\n========== AMINO ACID SUMMARY ==========")
 
     amino_acid_counts = {}
 
     for amino_acid in amino_acids:
-        amino_acid_counts[amino_acid] = amino_acid_counts.get(amino_acid, 0) + 1
+
+        # Stop codons are not counted as amino acids
+        if amino_acid == "Stop":
+            continue
+
+        if amino_acid in amino_acid_counts:
+            amino_acid_counts[amino_acid] += 1
+        else:
+            amino_acid_counts[amino_acid] = 1
+
+    if not amino_acid_counts:
+        print("No amino acids produced.")
+        return
 
     for amino_acid, count in amino_acid_counts.items():
-        print(f"{amino_acid:<20}: {count}")
-
-    print("=" * 40)
+        print(amino_acid + ":", count)
 
 # Step 9: Display codon usage statistics
 
@@ -233,7 +247,6 @@ def main():
         print("G (Guanine):", sequence.count("G"))
         print("C (Cytosine):", sequence.count("C"))
         print("Complete codons:", len(codons))
-        print("Incomplete nucleotides:", len(incomplete))
 
         print("\nCodons:")
         print(" - ".join(codons))
@@ -244,9 +257,13 @@ def main():
         print("\n========== PROGRAM SUMMARY ==========")
         print("Total codons translated:", len(codons))
 
-        amino_acid_count = sum(1 for amino_acid in amino_acids if amino_acid != "Stop")
-        print("Total amino acids produced:", amino_acid_count)
+        amino_acid_count = sum(
+            1 for amino_acid in amino_acids
+            if amino_acid != "Stop"
+        )
 
+        print("Total amino acids produced:", amino_acid_count)
+        print("Stop codons found:", amino_acids.count("Stop"))
         print("Incomplete nucleotides:", len(incomplete))
 
         print("\nStart Codons:")
