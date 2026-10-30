@@ -1,0 +1,213 @@
+# ==========================================
+# PYTHON PROJECT: CODON TABLE GENERATOR
+# ==========================================
+
+# Step 1: Create the complete RNA codon table
+
+codon_table = {
+    "UUU": "Phenylalanine", "UUC": "Phenylalanine",
+    "UUA": "Leucine", "UUG": "Leucine",
+    "UCU": "Serine", "UCC": "Serine",
+    "UCA": "Serine", "UCG": "Serine",
+    "UAU": "Tyrosine", "UAC": "Tyrosine",
+    "UAA": "Stop", "UAG": "Stop",
+    "UGU": "Cysteine", "UGC": "Cysteine",
+    "UGA": "Stop", "UGG": "Tryptophan",
+
+    "CUU": "Leucine", "CUC": "Leucine",
+    "CUA": "Leucine", "CUG": "Leucine",
+    "CCU": "Proline", "CCC": "Proline",
+    "CCA": "Proline", "CCG": "Proline",
+    "CAU": "Histidine", "CAC": "Histidine",
+    "CAA": "Glutamine", "CAG": "Glutamine",
+    "CGU": "Arginine", "CGC": "Arginine",
+    "CGA": "Arginine", "CGG": "Arginine",
+
+    "AUU": "Isoleucine", "AUC": "Isoleucine",
+    "AUA": "Isoleucine", "AUG": "Methionine",
+    "ACU": "Threonine", "ACC": "Threonine",
+    "ACA": "Threonine", "ACG": "Threonine",
+    "AAU": "Asparagine", "AAC": "Asparagine",
+    "AAA": "Lysine", "AAG": "Lysine",
+    "AGU": "Serine", "AGC": "Serine",
+    "AGA": "Arginine", "AGG": "Arginine",
+
+    "GUU": "Valine", "GUC": "Valine",
+    "GUA": "Valine", "GUG": "Valine",
+    "GCU": "Alanine", "GCC": "Alanine",
+    "GCA": "Alanine", "GCG": "Alanine",
+    "GAU": "Aspartic Acid", "GAC": "Aspartic Acid",
+    "GAA": "Glutamic Acid", "GAG": "Glutamic Acid",
+    "GGU": "Glycine", "GGC": "Glycine",
+    "GGA": "Glycine", "GGG": "Glycine"
+}
+
+
+# Step 2: Display all 64 codons
+
+def display_codon_table():
+    print("\n========== CODON TABLE ==========")
+
+    for codon, amino_acid in codon_table.items():
+        print(codon, ":", amino_acid)
+
+    print("Total codons:", len(codon_table))
+
+
+# Step 3: Accept sequence from user
+
+def get_sequence():
+    sequence = input("\nEnter your DNA or RNA sequence: ")
+    return sequence.upper().replace(" ", "")
+
+
+# Step 4: Validate the sequence
+
+def validate_sequence(sequence):
+
+    if not sequence:
+        return False
+
+    if "T" in sequence and "U" in sequence:
+        return False
+
+    if not all(letter in "ATGC" for letter in sequence) and not all(letter in "AUGC" for letter in sequence):
+        return False
+
+    return True
+
+
+# Step 5: Translate DNA or RNA sequence
+
+def translate_sequence(sequence):
+
+    # Convert DNA into RNA for translation
+    rna_sequence = sequence.replace("T", "U")
+
+    codons = []
+    amino_acids = []
+    incomplete_codon = ""
+
+    for i in range(0, len(rna_sequence), 3):
+
+        codon = rna_sequence[i:i + 3]
+
+        if len(codon) < 3:
+            incomplete_codon = codon
+            break
+
+        amino_acid = codon_table[codon]
+
+        # Keep original DNA/RNA codon for display
+        original_codon = sequence[i:i + 3]
+
+        codons.append(original_codon)
+        amino_acids.append(amino_acid)
+
+    return codons, amino_acids, incomplete_codon
+
+
+# Step 6: Identify start and stop codons
+
+def identify_start_stop(codons):
+
+    start_codons = []
+    stop_codons = ["TAA", "TAG", "TGA"]
+
+    found_stops = []
+
+    for codon in codons:
+
+        normalized_codon = codon.replace("U", "T")
+
+        if normalized_codon == "ATG":
+            start_codons.append(codon)
+
+        if normalized_codon in stop_codons:
+            found_stops.append(codon)
+
+    return start_codons, found_stops
+
+# Step 7: Display translation in a structured table
+
+def display_translation_table(codons, amino_acids):
+
+    print("\n" + "=" * 55)
+    print("              TRANSLATION TABLE")
+    print("=" * 55)
+
+    print(f"{'Position':<12}{'Codon':<12}{'Amino Acid':<20}{'Role'}")
+    print("-" * 55)
+
+    for i, (codon, amino_acid) in enumerate(zip(codons, amino_acids), 1):
+
+        if codon.replace("U", "T") == "ATG":
+            role = "Start"
+
+        elif amino_acid == "Stop":
+            role = "Stop"
+
+        else:
+            role = "Coding"
+
+        print(f"{i:<12}{codon:<12}{amino_acid:<20}{role}")
+
+    print("=" * 55)
+
+# Step 8: Main program
+
+def main():
+
+    print("\n===================================")
+    print("       CODON TABLE GENERATOR")
+    print("===================================")
+
+    display_codon_table()
+
+    sequence = get_sequence()
+
+    if validate_sequence(sequence):
+
+        codons, amino_acids, incomplete = translate_sequence(sequence)
+
+        start_codons, stop_codons = identify_start_stop(codons)
+        display_translation_table(codons, amino_acids)
+
+        print("\n========== TRANSLATION RESULT ==========")
+
+        print("Original Sequence:", sequence)
+
+        print("\nCodons:")
+        print(" - ".join(codons))
+
+        print("\nAmino Acids:")
+        print(" - ".join(amino_acids))
+
+        print("\nStart Codons:")
+        if start_codons:
+            print(" - ".join(start_codons))
+        else:
+            print("No start codon found.")
+
+        print("\nStop Codons:")
+        if stop_codons:
+            print(" - ".join(stop_codons))
+        else:
+            print("No stop codon found.")
+
+        if incomplete:
+            print("\nIncomplete codon at the end:", incomplete)
+
+    else:
+
+        print("\nInvalid sequence!")
+        print("Please enter only A, T, G, C or A, U, G, C.")
+        print("Do not mix DNA and RNA letters.")
+
+    print("\nThank you for using Codon Table Generator!")
+
+
+# Step 9: Run the program
+
+if __name__ == "__main__":
+    main()
