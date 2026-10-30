@@ -343,13 +343,30 @@ This project was compared with three existing GitHub repositories to understand 
 | Start/stop codons | Identified          | Stored separately  | Usage data           | Depends on table            |
 | Main output       | Amino acid sequence | Genetic code data  | Codon frequencies    | Custom tables               |
 
-### 7.3 Key Differences
+### 7.3 Comparison of Actual Codon Entries
+
+The following examples show how codons are represented in this project and existing implementations.
+
+| RNA Codon | This Project  | Biopython     |
+| --------- | ------------- | ------------- |
+| AUG       | Methionine    | Methionine    |
+| GCU       | Alanine       | Alanine       |
+| UUU       | Phenylalanine | Phenylalanine |
+| UAA       | Stop          | Stop          |
+
+The mappings agree with the standard genetic code.
+
+Python Codon Tables provides codon usage frequencies rather than the same direct amino acid mapping. EndyLab provides tools to represent and manipulate custom codon tables using different data structures.
+
+This comparison shows that the project's standard codon mappings follow the same genetic code while using a simpler Python dictionary.
+
+### 7.4 Key Differences
 
 This project uses a simple Python dictionary containing all 64 standard RNA codons. It translates DNA and RNA sequences, identifies start and stop codons, and handles incomplete codons.
 
 Biopython offers advanced genetic code and translation features. Python Codon Tables focuses on codon usage frequencies, while EndyLab focuses on custom codon table representation and optimisation.
 
-### 7.4 Conclusion
+### 7.5 Conclusion
 
 This comparison shows that Python dictionaries provide a simple way to represent codon-to-amino-acid relationships. While existing repositories offer advanced bioinformatics features, this project focuses on understanding and implementing the standard genetic code using basic Python concepts.
 
