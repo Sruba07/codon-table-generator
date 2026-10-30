@@ -163,7 +163,25 @@ def display_translation_table(codons, amino_acids):
 
     print("=" * 55)
 
-# Step 8: Main program
+# Step 8: Count amino acids in the translated sequence
+
+def display_amino_acid_summary(amino_acids):
+
+    print("\n" + "=" * 40)
+    print("       AMINO ACID SUMMARY")
+    print("=" * 40)
+
+    amino_acid_counts = {}
+
+    for amino_acid in amino_acids:
+        amino_acid_counts[amino_acid] = amino_acid_counts.get(amino_acid, 0) + 1
+
+    for amino_acid, count in amino_acid_counts.items():
+        print(f"{amino_acid:<20}: {count}")
+
+    print("=" * 40)
+
+# Step 9: Main program
 
 def main():
 
@@ -181,6 +199,7 @@ def main():
 
         start_codons, stop_codons = identify_start_stop(codons)
         display_translation_table(codons, amino_acids)
+        display_amino_acid_summary(amino_acids)
 
         print("\n========== TRANSLATION RESULT ==========")
 
@@ -221,7 +240,9 @@ def main():
     print("\nThank you for using Codon Table Generator!")
 
 
-# Step 9: Run the program
+# Step 10: Run the program
 
 if __name__ == "__main__":
     main()
+
+
