@@ -186,6 +186,11 @@ def main():
 
         print("Original Sequence:", sequence)
 
+        print("\nSequence Statistics:")
+        print("Total nucleotides:", len(sequence))
+        print("Complete codons:", len(codons))
+        print("Incomplete nucleotides:", len(incomplete))
+
         print("\nCodons:")
         print(" - ".join(codons))
 
