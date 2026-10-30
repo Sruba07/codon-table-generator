@@ -42,6 +42,7 @@ codon_table = {
     "GGA": "Glycine", "GGG": "Glycine"
 }
 
+
 # Step 2: Display all 64 codons
 
 def display_codon_table():
@@ -106,7 +107,7 @@ def translate_sequence(sequence):
 
     return codons, amino_acids, incomplete_codon
 
-    # Step 6: Identify start and stop codons
+# Step 6: Identify start and stop codons
 
 def identify_start_stop(codons):
 
@@ -204,6 +205,7 @@ def main():
 
     sequence = get_sequence()
 
+
     if validate_sequence(sequence):
 
         codons, amino_acids, incomplete = translate_sequence(sequence)
@@ -238,6 +240,14 @@ def main():
 
         print("\nAmino Acids:")
         print(" - ".join(amino_acids))
+
+        print("\n========== PROGRAM SUMMARY ==========")
+        print("Total codons translated:", len(codons))
+
+        amino_acid_count = sum(1 for amino_acid in amino_acids if amino_acid != "Stop")
+        print("Total amino acids produced:", amino_acid_count)
+
+        print("Incomplete nucleotides:", len(incomplete))
 
         print("\nStart Codons:")
         if start_codons:
