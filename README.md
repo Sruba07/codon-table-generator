@@ -395,7 +395,7 @@ Codon-Table-Generator/
 **Created by:** Srushti B A
 **Project Title:** Development of a Codon Table Generator
 **Programming Language:** Python
-**Project Type:** Bioinformatics / Python Programming Assignment
+**Project Type:** Python Programming Assignment
 
 ---
 
