@@ -174,7 +174,25 @@ def display_amino_acid_summary(amino_acids):
 
     print("=" * 40)
 
-# Step 9: Main program
+# Step 9: Display codon usage statistics
+
+def display_codon_usage(codons):
+
+    print("\n" + "=" * 40)
+    print("       CODON USAGE SUMMARY")
+    print("=" * 40)
+
+    codon_counts = {}
+
+    for codon in codons:
+        codon_counts[codon] = codon_counts.get(codon, 0) + 1
+
+    for codon, count in codon_counts.items():
+        print(f"{codon:<15}: {count}")
+
+    print("=" * 40)
+
+# Step 10: Main program
 
 def main():
 
@@ -193,6 +211,7 @@ def main():
         start_codons, stop_codons = identify_start_stop(codons)
         display_translation_table(codons, amino_acids)
         display_amino_acid_summary(amino_acids)
+        display_codon_usage(codons)
 
         print("\n========== TRANSLATION RESULT ==========")
 
@@ -243,7 +262,7 @@ def main():
 
     print("\nThank you for using Codon Table Generator!")
 
-# Step 10: Run the program
+# Step 11: Run the program
 
 if __name__ == "__main__":
     main()
