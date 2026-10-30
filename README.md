@@ -235,6 +235,11 @@ The program will start in the terminal and ask you to enter a DNA or RNA sequenc
 
 ### Example 1: DNA Sequence Translation
 
+========== PROGRAM SUMMARY ==========
+Total codons translated: 4
+Total amino acids produced: 3
+Incomplete nucleotides: 0
+
 **Input:**
 
 ```text
@@ -400,7 +405,7 @@ Codon-Table-Generator/
 2. **Python Codon Tables – Edinburgh Genome Foundry:** https://github.com/Edinburgh-Genome-Foundry/python_codon_tables
 3. **EndyLab Codon Tables:** https://github.com/EndyLab/codon-tables
 4. **Biopython CodonTable Documentation:** https://biopython.org/docs/latest/api/Bio.Data.CodonTable.html
-5. **NCBI:** Standard Genetic Code reference.
+5. **NCBI:** Standard Genetic Code reference. https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi
 
 
 ---
