@@ -61,17 +61,22 @@ def get_sequence():
     return sequence.upper().replace(" ", "")
 
 
-# Step 4: Validate the sequence
+
+# Step 4: Validate the DNA or RNA sequence
 
 def validate_sequence(sequence):
 
     if not sequence:
+        print("Error: Sequence cannot be empty.")
         return False
 
     if "T" in sequence and "U" in sequence:
+        print("Error: Do not mix DNA (T) and RNA (U) nucleotides.")
         return False
 
-    if not all(letter in "ATGC" for letter in sequence) and not all(letter in "AUGC" for letter in sequence):
+    if not all(base in "ATGC" for base in sequence) and not all(base in "AUGC" for base in sequence):
+        print("Error: Invalid nucleotide detected.")
+        print("Please enter only A, T, G, C for DNA or A, U, G, C for RNA.")
         return False
 
     return True
@@ -215,4 +220,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
