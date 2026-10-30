@@ -210,7 +210,7 @@ Before running the program, make sure you have:
 Open a terminal and enter:
 
 ```bash
-git clone https://github.com/YOUR-GITHUB-USERNAME/codon-table-generator.git
+https://github.com/Sruba07/codon-table-generator.git
 ```
 
 Replace `YOUR-GITHUB-USERNAME` with your actual GitHub username.
@@ -325,66 +325,33 @@ The program rejects characters that are not valid nucleotides.
 
 ## 7. Comparison with Existing GitHub Codon-Table Implementations
 
-To understand how this project's dictionary-based approach compares with existing bioinformatics tools, its implementation was compared with **Biopython**, an open-source Python library used in computational molecular biology.
+This project was compared with three existing GitHub repositories to understand different approaches to codon tables.
 
-**Reference project:** Biopython
-**Module:** `Bio.Data.CodonTable`
+### 7.1 Reference Repositories
 
-### Comparison Table
+1. **Biopython:** Provides genetic code tables, codon translation and start/stop codon information.
+2. **Python Codon Tables:** Provides organism-specific codon usage frequencies.
+3. **EndyLab Codon Tables:** Provides tools for custom codon table representation and optimisation.
 
-| Feature                   | This Project                                                   | Biopython                                                     |
-| ------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- |
-| Main purpose              | Educational DNA and RNA codon translation                      | General-purpose bioinformatics functionality                  |
-| Codon representation      | Python dictionary                                              | CodonTable objects and dictionaries                           |
-| Amino acid representation | Full amino acid names                                          | Commonly uses one-letter amino acid symbols                   |
-| Stop codons               | Explicitly represented as `Stop` in the translation dictionary | Maintained separately using `stop_codons`                     |
-| Start codons              | Identified by the program                                      | Maintained using `start_codons`                               |
-| Genetic code support      | Focuses on the standard genetic code                           | Supports multiple genetic code tables                         |
-| DNA and RNA support       | Accepts both DNA and RNA input                                 | Provides separate DNA and RNA codon-table types               |
-| Output                    | User-friendly terminal translation tables                      | Programmable codon-table representations                      |
-| Complexity                | Simple and beginner-friendly                                   | More extensive and suitable for advanced bioinformatics tasks |
+### 7.2 Comparison Table
 
-### Key Observations
+| Feature           | This Project        | Biopython          | Python Codon Tables  | EndyLab                     |
+| ----------------- | ------------------- | ------------------ | -------------------- | --------------------------- |
+| Main purpose      | DNA/RNA translation | Bioinformatics     | Codon usage analysis | Custom codon tables         |
+| Data structure    | Dictionary          | CodonTable objects | Nested dictionaries  | Dictionaries and DataFrames |
+| Translation       | Yes                 | Yes                | Mainly usage lookup  | Custom table tools          |
+| Start/stop codons | Identified          | Stored separately  | Usage data           | Depends on table            |
+| Main output       | Amino acid sequence | Genetic code data  | Codon frequencies    | Custom tables               |
 
-**1. Data Structure**
+### 7.3 Key Differences
 
-This project uses a straightforward Python dictionary for codon-to-amino-acid mapping.
+This project uses a simple Python dictionary containing all 64 standard RNA codons. It translates DNA and RNA sequences, identifies start and stop codons, and handles incomplete codons.
 
-Biopython provides a more structured `CodonTable` implementation with attributes such as `forward_table`, `start_codons`, and `stop_codons`.
+Biopython offers advanced genetic code and translation features. Python Codon Tables focuses on codon usage frequencies, while EndyLab focuses on custom codon table representation and optimisation.
 
-**2. Amino Acid Representation**
+### 7.4 Conclusion
 
-This project displays full amino acid names, such as `Methionine` and `Alanine`, to make the output easier to understand.
-
-Biopython commonly uses standard one-letter amino acid symbols, such as `M` for Methionine and `A` for Alanine.
-
-**3. Stop Codon Handling**
-
-This project explicitly represents stop codons as `Stop` in its translation dictionary.
-
-Biopython maintains stop codons separately through its `stop_codons` attribute.
-
-**4. Genetic Code Support**
-
-This project focuses on the standard genetic code and is designed for educational purposes.
-
-Biopython supports multiple genetic code tables, including alternative genetic codes.
-
-**5. DNA and RNA Support**
-
-This project accepts both DNA and RNA sequences and handles the difference between Thymine and Uracil during translation.
-
-Biopython provides separate DNA and RNA codon-table implementations.
-
-### Conclusion of Comparison
-
-The comparison demonstrates that both implementations use codon-to-amino-acid relationships to perform genetic translation.
-
-However, this project prioritizes simplicity, readability, and understanding the fundamentals of codon translation, whereas Biopython provides a more extensive and flexible framework for bioinformatics applications.
-
-This project is therefore useful as an introductory implementation of a genetic code translator.
-
----
+This comparison shows that Python dictionaries provide a simple way to represent codon-to-amino-acid relationships. While existing repositories offer advanced bioinformatics features, this project focuses on understanding and implementing the standard genetic code using basic Python concepts.
 
 ## 8. Project Structure
 
@@ -394,14 +361,10 @@ The project currently contains the following files:
 Codon-Table-Generator/
 │
 ├── main.py
-│   └── Main Python program containing the codon dictionary,
-│       sequence validation, translation, and output functions.
-│
+├── test_main.py
 └── README.md
-    └── Project description, features, instructions,
-        examples, and comparison with Biopython.
-```
 
+```
 ---
 
 ## 9. Author
@@ -418,7 +381,8 @@ Codon-Table-Generator/
 1. **Biopython Official GitHub Repository** – Open-source Python library for computational molecular biology.
 2. **Biopython CodonTable Documentation** – Documentation describing codon-table objects, forward tables, start codons, and stop codons.
 3. **National Center for Biotechnology Information (NCBI)** – Reference information on the standard genetic code.
+4. Edinburgh Genome Foundry – Python Codon Tables.
+5. EndyLab – Codon Tables.
 
 ---
-
 **Project developed by Srushti B A**
