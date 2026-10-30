@@ -210,10 +210,8 @@ Before running the program, make sure you have:
 Open a terminal and enter:
 
 ```bash
-https://github.com/Sruba07/codon-table-generator.git
+git clone https://github.com/Sruba07/codon-table-generator.git
 ```
-
-Replace `YOUR-GITHUB-USERNAME` with your actual GitHub username.
 
 ### Step 2: Open the Project Folder
 
@@ -228,6 +226,8 @@ python main.py
 ```
 
 The program will start in the terminal and ask you to enter a DNA or RNA sequence.
+
+
 
 ---
 
@@ -330,7 +330,9 @@ This project was compared with three existing GitHub repositories to understand 
 ### 7.1 Reference Repositories
 
 1. **Biopython:** Provides genetic code tables, codon translation and start/stop codon information.
+
 2. **Python Codon Tables:** Provides organism-specific codon usage frequencies.
+
 3. **EndyLab Codon Tables:** Provides tools for custom codon table representation and optimisation.
 
 ### 7.2 Comparison Table
@@ -345,7 +347,7 @@ This project was compared with three existing GitHub repositories to understand 
 
 ### 7.3 Comparison of Actual Codon Entries
 
-The following examples show how codons are represented in this project and existing implementations.
+The following examples show how codons are represented in this project and Biopython.
 
 | RNA Codon | This Project  | Biopython     |
 | --------- | ------------- | ------------- |
@@ -356,19 +358,18 @@ The following examples show how codons are represented in this project and exist
 
 The mappings agree with the standard genetic code.
 
-Python Codon Tables provides codon usage frequencies rather than the same direct amino acid mapping. EndyLab provides tools to represent and manipulate custom codon tables using different data structures.
-
-This comparison shows that the project's standard codon mappings follow the same genetic code while using a simpler Python dictionary.
+Python Codon Tables focuses on codon usage frequencies, while EndyLab provides tools for representing and manipulating custom codon tables.
 
 ### 7.4 Key Differences
 
-This project uses a simple Python dictionary containing all 64 standard RNA codons. It translates DNA and RNA sequences, identifies start and stop codons, and handles incomplete codons.
+This project uses a Python dictionary containing all 64 standard RNA codons. It translates DNA and RNA sequences, identifies start and stop codons, and handles incomplete codons.
 
 Biopython offers advanced genetic code and translation features. Python Codon Tables focuses on codon usage frequencies, while EndyLab focuses on custom codon table representation and optimisation.
 
 ### 7.5 Conclusion
 
-This comparison shows that Python dictionaries provide a simple way to represent codon-to-amino-acid relationships. While existing repositories offer advanced bioinformatics features, this project focuses on understanding and implementing the standard genetic code using basic Python concepts.
+This comparison demonstrates that Python dictionaries provide a simple way to represent codon-to-amino-acid relationships. While existing repositories offer advanced bioinformatics features, this project focuses on implementing the standard genetic code using basic Python concepts.
+
 
 ## 8. Project Structure
 
@@ -395,11 +396,12 @@ Codon-Table-Generator/
 
 ## 10. References
 
-1. **Biopython Official GitHub Repository** – Open-source Python library for computational molecular biology.
-2. **Biopython CodonTable Documentation** – Documentation describing codon-table objects, forward tables, start codons, and stop codons.
-3. **National Center for Biotechnology Information (NCBI)** – Reference information on the standard genetic code.
-4. Edinburgh Genome Foundry – Python Codon Tables.
-5. EndyLab – Codon Tables.
+1. **Biopython:** https://github.com/biopython/biopython
+2. **Python Codon Tables – Edinburgh Genome Foundry:** https://github.com/Edinburgh-Genome-Foundry/python_codon_tables
+3. **EndyLab Codon Tables:** https://github.com/EndyLab/codon-tables
+4. **Biopython CodonTable Documentation:** https://biopython.org/docs/latest/api/Bio.Data.CodonTable.html
+5. **NCBI:** Standard Genetic Code reference.
+
 
 ---
-**Project developed by Srushti B A**
+
