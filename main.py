@@ -204,6 +204,13 @@ def main():
         gc_count = sequence.count("G") + sequence.count("C")
         gc_percentage = (gc_count / len(sequence)) * 100
         print(f"GC Content: {gc_percentage:.2f}%")
+
+        print("\nNucleotide Composition:")
+        print("A (Adenine):", sequence.count("A"))
+        print("T (Thymine):", sequence.count("T"))
+        print("U (Uracil):", sequence.count("U"))
+        print("G (Guanine):", sequence.count("G"))
+        print("C (Cytosine):", sequence.count("C"))
         print("Complete codons:", len(codons))
         print("Incomplete nucleotides:", len(incomplete))
 
